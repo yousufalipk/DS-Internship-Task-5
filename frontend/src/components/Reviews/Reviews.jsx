@@ -36,7 +36,7 @@ const Reviews = () => {
 
 
     return (
-        <div id='reviews' className='w-full h-[70vh] flex flex-col justify-center items-center gap-2 px-20'>
+        <div id='reviews' className='w-full min-h-[70vh] flex flex-col justify-center items-center gap-2 px-20'>
             <h1 className='w-full text-center font-semibold text-green-500 text-4xl py-2'>
                 What people say about us?
             </h1>

@@ -38,7 +38,7 @@ const Carousel = () => {
         <div
             style={{ backgroundImage: `url(${content[index].path})` }}
             id='carousel'
-            className='w-full h-[100vh] flex justify-start items-center bg-center bg-cover relative'
+            className='w-full min-h-[100vh] flex justify-start items-center bg-center bg-cover relative'
         >
             <div className='w-full h-full bg-black opacity-50 absolute z-10'></div>
             <div className='w-[20%] h-[10%] absolute z-20 bottom-[3%] right-0 flex justify-center items-center gap-5'>

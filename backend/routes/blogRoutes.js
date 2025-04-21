@@ -10,16 +10,24 @@ import {
 
 import multer from 'multer';
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'storage/');
+import { v2 as cloudinary } from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
+
+import { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } from '../config/env.js';
+
+cloudinary.config({
+    cloud_name: CLOUDINARY_CLOUD_NAME,
+    api_key: CLOUDINARY_API_KEY,
+    api_secret: CLOUDINARY_API_SECRET,
+});
+
+const storage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'explorePakistan',
+        format: async (req, file) => 'png',
+        public_id: (req, file) => `${Date.now()}-${req.body.userId}`
     },
-    filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname) || '.png';
-        const filename = `${Date.now()}-${req.body.userId}.png`;
-        console.log('Filename', filename);
-        cb(null, filename);
-    }
 });
 
 const upload = multer({ storage });

@@ -1,10 +1,6 @@
-import { buffer } from 'stream/consumers';
 import BlogModel from '../schemas/blog.js';
 import UserModel from '../schemas/user.js';
-import fs from 'fs';
-import path from 'path';
-import multer from 'multer';
-import { BACKEND_PATH } from '../config/env.js';
+import { v2 as cloudinary } from 'cloudinary';
 
 export const createBlog = async (req, res) => {
     try {
@@ -13,70 +9,75 @@ export const createBlog = async (req, res) => {
 
         const user = await UserModel.findById(userId);
 
-        if (!user && !user.approved) {
+        if (!user || !user.approved) {
             return res.status(200).json({
                 status: 'failed',
-                message: 'Unauthorized to perfrom this action!'
-            })
+                message: 'Unauthorized to perform this action!'
+            });
         }
 
         const newBlog = new BlogModel({
-            title: title,
-            content: content,
-            photoPath: `${BACKEND_PATH}/storage/${file.filename}`,
-            userId: userId
-        })
+            title,
+            content,
+            photoPath: file.path,
+            cloudinaryPublicId: file.filename,
+            userId
+        });
 
         await newBlog.save();
 
         return res.status(200).json({
             status: 'success',
-            message: 'Blog created succesfully!',
+            message: 'Blog created successfully!',
             blog: newBlog
-        })
+        });
     } catch (error) {
         console.log('Internal Server Error!', error);
         return res.status(200).json({
             status: 'failed',
             message: 'Internal Server Error'
-        })
+        });
     }
-}
+};
 
 export const deleteBlog = async (req, res) => {
     try {
         const { userId, blogId } = req.body;
 
         const user = await UserModel.findById(userId);
-
-        if (!user && !user.approved) {
+        if (!user || !user.approved) {
             return res.status(200).json({
                 status: 'failed',
-                message: 'Unauthorized to perfrom this action!'
-            })
+                message: 'Unauthorized to perform this action!'
+            });
         }
 
         const blog = await BlogModel.findById(blogId);
-        const photoName = blog.photoPath.split('/').pop();
-        const imagePath = path.join('storage', photoName);
-        if (fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath);
+        if (!blog) {
+            return res.status(200).json({
+                status: 'failed',
+                message: 'Blog not found!'
+            });
+        }
+
+        if (blog.cloudinaryPublicId) {
+            await cloudinary.uploader.destroy(blog.cloudinaryPublicId);
         }
 
         await BlogModel.findByIdAndDelete(blogId);
 
         return res.status(200).json({
             status: 'success',
-            message: 'Blog Removed Succesfully!'
-        })
+            message: 'Blog removed successfully!'
+        });
     } catch (error) {
         console.log('Internal Server Error!', error);
         return res.status(200).json({
             status: 'failed',
             message: 'Internal Server Error'
-        })
+        });
     }
-}
+};
 
 export const updateBlog = async (req, res) => {
     try {
@@ -84,32 +85,29 @@ export const updateBlog = async (req, res) => {
         const file = req.file;
 
         const user = await UserModel.findById(userId);
-
-        if (!user && !user.approved) {
+        if (!user || !user.approved) {
             return res.status(200).json({
                 status: 'failed',
-                message: 'Unauthorized to perfrom this action!'
-            })
+                message: 'Unauthorized to perform this action!'
+            });
         }
 
         const blog = await BlogModel.findById(blogId);
-
         if (!blog) {
             return res.status(200).json({
                 status: 'failed',
                 message: 'Error updating blog!'
-            })
+            });
         }
 
-        const photoName = blog.photoPath.split('/').pop();
-        const imagePath = path.join('storage', photoName);
-        if (fs.existsSync(imagePath)) {
-            fs.unlinkSync(imagePath);
+        if (blog.cloudinaryPublicId) {
+            await cloudinary.uploader.destroy(blog.cloudinaryPublicId);
         }
 
         blog.title = newBlogTitle;
         blog.content = newBlogContent;
-        blog.photoPath = `${BACKEND_PATH}/storage/${file.filename}`;
+        blog.photoPath = file.path;
+        blog.cloudinaryPublicId = file.filename;
 
         await blog.save();
 
@@ -117,15 +115,15 @@ export const updateBlog = async (req, res) => {
             status: 'success',
             message: 'Blog updated successfully!',
             newBlog: blog
-        })
+        });
     } catch (error) {
         console.log('Internal Server Error!', error);
         return res.status(200).json({
             status: 'failed',
             message: 'Internal Server Error'
-        })
+        });
     }
-}
+};
 
 export const fetchBlogs = async (req, res) => {
     try {
@@ -135,19 +133,19 @@ export const fetchBlogs = async (req, res) => {
             return res.status(200).json({
                 status: 'failed',
                 message: 'Blogs not found!'
-            })
+            });
         }
 
         return res.status(200).json({
             status: 'success',
-            message: 'Blogs fetched succesfully!',
-            blogs: blogs
-        })
+            message: 'Blogs fetched successfully!',
+            blogs
+        });
     } catch (error) {
         console.log('Internal Server Error!', error);
         return res.status(200).json({
             status: 'failed',
             message: 'Internal Server Error'
-        })
+        });
     }
-}
+};

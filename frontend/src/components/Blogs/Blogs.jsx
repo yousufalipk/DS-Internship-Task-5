@@ -8,16 +8,13 @@ const Blogs = () => {
     const navigate = useNavigate();
 
     return (
-        <div id='blogs' className='w-full h-[60vh] flex flex-col justify-center items-center px-20 gap-2'>
+        <div id='blogs' className='w-full min-h-[60vh] flex flex-col justify-center items-center px-20 gap-2'>
             <h1 className='w-full text-center font-semibold text-green-500 text-4xl py-2'>
                 Latest Blogs
             </h1>
             <hr className='w-[80%] text-green-500' />
             <div className='w-full h-full flex flex-wrap justify-center items-center gap-10'>
                 {blogs.map((b, i) => {
-                    if (i > 2) {
-                        return null;
-                    }
                     return (
                         <div
                             onClick={() => {

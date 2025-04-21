@@ -54,7 +54,7 @@ const Contact = () => {
     })
 
     return (
-        <div id='contact' className='w-full h-[70vh] flex flex-col justify-center items-center px-20 gap-2'>
+        <div id='contact' className='w-full min-h-[70vh] flex flex-col justify-center items-center px-20 gap-2'>
             <h1 className='w-full text-center font-semibold text-green-500 text-4xl py-2'>
                 Contact Us Now!
             </h1>

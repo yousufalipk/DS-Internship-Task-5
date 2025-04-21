@@ -4,7 +4,7 @@ import AboutSvg from '../../assets/about.svg';
 const About = () => {
 
     return (
-        <div id='about' className='w-full h-[100vh] flex flex-col justify-center items-center px-20 gap-2 mt-5'>
+        <div id='about' className='w-full min-h-[100vh] flex flex-col justify-center items-center px-20 gap-2 mt-5'>
             <h1 className='w-full text-center font-semibold text-green-500 text-4xl py-2'>
                 About Us
             </h1>

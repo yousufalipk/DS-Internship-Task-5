@@ -26,22 +26,22 @@ const Home = () => {
         <div className='w-full flex flex-col justify-center items-center'>
             <motion.section
                 id="home"
-                className="w-full h-[100vh] flex justify-between items-center"
+                className="w-full min-h-[100vh] flex justify-between items-center"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.5 }}
+                viewport={{ once: false, amount: 0.3 }}
             >
                 <CarouselPage />
             </motion.section>
 
             <motion.section
                 id="home"
-                className="w-full h-[100vh] flex justify-between items-center"
+                className="w-full min-h-[100vh] flex justify-between items-center"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.5 }}
+                viewport={{ once: false, amount: 0.3 }}
             >
                 <AboutPage />
             </motion.section>
@@ -49,11 +49,11 @@ const Home = () => {
             {blogs.length > 0 && (
                 <motion.section
                     id="home"
-                    className="w-full h-[60vh] flex justify-between items-center"
+                    className="w-full min-h-[60vh] flex justify-between items-center"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.3 }}
                 >
                     <BlogsPage />
                 </motion.section>
@@ -61,22 +61,22 @@ const Home = () => {
 
             <motion.section
                 id="home"
-                className="w-full h-[100vh] flex justify-between items-center"
+                className="w-full min-h-[100vh] flex justify-between items-center"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.5 }}
+                viewport={{ once: false, amount: 0.3 }}
             >
                 <Reviews />
             </motion.section>
 
             <motion.section
                 id="home"
-                className="w-full h-[70vh] flex justify-between items-center"
+                className="w-full min-h-[70vh] flex justify-between items-center"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.5 }}
+                viewport={{ once: false, amount: 0.3 }}
             >
                 <ContactPage />
             </motion.section>
