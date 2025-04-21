@@ -12,6 +12,8 @@ const CreateOrUpdateBlog = () => {
 
     const TINYMCE_API_KEY = import.meta.env.VITE_APP_TINYMCE_API_KEY;
 
+    console.log("Tinymce api", TINYMCE_API_KEY);
+
     const isValidMongoId = (value) => /^[a-f\d]{24}$/i.test(value);
     const blogId = isValidMongoId(id) ? id : null;
 

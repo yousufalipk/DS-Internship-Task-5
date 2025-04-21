@@ -181,8 +181,6 @@ export const UserProvider = (props) => {
             const response = await axios.get(`${apiUrl}/blog/fetch`);
             if (response.data.status === 'success') {
                 setBlogs(response.data.blogs);
-            } else {
-                console.log(response.data.message);
             }
         } catch (error) {
             console.log("Internal Server Error", error)
