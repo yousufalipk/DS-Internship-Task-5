@@ -7,83 +7,88 @@ import Reviews from '../../components/Reviews/Reviews';
 import ContactPage from '../../components/Contact/Contact';
 import Footer from '../../components/Footer/Footer';
 
-import { motion } from "framer-motion"
-
-
+import { motion } from "framer-motion";
 import { useUser } from '../../context';
 
-const Home = () => {
+const sectionVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: 'easeOut'
+        }
+    }
+};
 
+const Home = () => {
     const { blogs, fetchBlogs } = useUser();
 
     useEffect(() => {
         if (blogs.length === 0) {
             fetchBlogs();
         }
-    })
+    }, [blogs, fetchBlogs]);
 
     return (
         <div className='w-full flex flex-col justify-center items-center'>
             <motion.section
                 id="home"
                 className="w-full min-h-[100vh] flex justify-between items-center"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.3 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                variants={sectionVariants}
             >
                 <CarouselPage />
             </motion.section>
 
             <motion.section
-                id="home"
                 className="w-full min-h-[100vh] flex justify-between items-center"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.3 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                variants={sectionVariants}
             >
                 <AboutPage />
             </motion.section>
 
             {blogs.length > 0 && (
                 <motion.section
-                    id="home"
                     className="w-full min-h-[60vh] flex justify-between items-center"
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: false, amount: 0.3 }}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.4 }}
+                    variants={sectionVariants}
                 >
                     <BlogsPage />
                 </motion.section>
             )}
 
             <motion.section
-                id="home"
                 className="w-full min-h-[100vh] flex justify-between items-center"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.3 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                variants={sectionVariants}
             >
                 <Reviews />
             </motion.section>
 
             <motion.section
-                id="home"
                 className="w-full min-h-[70vh] flex justify-between items-center"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: false, amount: 0.3 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.4 }}
+                variants={sectionVariants}
             >
                 <ContactPage />
             </motion.section>
 
             <Footer />
         </div>
-    )
-}
+    );
+};
 
 export default Home;
