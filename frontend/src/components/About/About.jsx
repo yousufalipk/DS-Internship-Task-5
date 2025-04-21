@@ -2,15 +2,14 @@ import React from 'react';
 import AboutSvg from '../../assets/about.svg';
 
 const About = () => {
-
     return (
-        <div id='about' className='w-full min-h-[100vh] flex flex-col justify-center items-center px-20 gap-2 mt-5'>
-            <h1 className='w-full text-center font-semibold text-green-500 text-4xl py-2'>
+        <div id='about' className='w-full min-h-[100vh] flex flex-col justify-center items-center px-6 sm:px-10 md:px-16 lg:px-20 gap-2 mt-5'>
+            <h1 className='w-full text-center font-semibold text-green-500 text-3xl sm:text-4xl py-2'>
                 About Us
             </h1>
             <hr className='w-[80%] text-green-500' />
-            <div className='w-full h-full flex justify-center items-center'>
-                <div className='w-1/2 h-full text-gray-500 flex flex-col justify-center items-start gap-5 text-justify text-lg'>
+            <div className='w-full flex flex-col lg:flex-row justify-center items-center gap-8 mt-4'>
+                <div className='w-full lg:w-1/2 text-gray-500 flex flex-col justify-center items-start gap-5 text-justify text-base sm:text-lg'>
                     <p>
                         <span className='text-green-500 font-semibold'>Explore Pakistan</span> is your digital gateway to the beauty, culture, and history of one of the most diverse and captivating countries in the world. Our mission is to showcase the hidden gems, natural wonders, and rich heritage that make Pakistan a truly unforgettable destination.
                     </p>
@@ -24,12 +23,12 @@ const About = () => {
                         Join us on this journey and see Pakistan through a lens of wonder, culture, and adventure.
                     </p>
                 </div>
-                <div className='w-1/2 h-full flex flex-col justify-center items-center'>
-                    <img src={AboutSvg} alt="aboutUs-svg" width='300px' height='300px' className='fill-current text-green-600' />
+                <div className='w-full lg:w-1/2 flex justify-center items-center'>
+                    <img src={AboutSvg} alt="aboutUs-svg" className='w-[250px] sm:w-[300px] md:w-[350px] lg:w-[400px]' />
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default About;

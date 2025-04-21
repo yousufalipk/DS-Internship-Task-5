@@ -63,12 +63,12 @@ const CreateOrUpdateBlog = () => {
     }, [blogId, blogs, setValues]);
 
     return (
-        <form onSubmit={handleSubmit} className='w-[50%] flex flex-col justify-center items-center gap-5'>
+        <form onSubmit={handleSubmit} className='w-full max-w-2xl px-4 sm:px-6 lg:px-8 mx-auto flex flex-col justify-center items-center gap-5'>
             <div className='w-full flex flex-col justify-center items-center gap-2'>
-                <h1 className='text-2xl text-green-500 font-bold'>
+                <h1 className='text-xl sm:text-2xl text-green-500 font-bold text-center'>
                     {blogId ? 'Update Blog' : 'Add New Blog'}
                 </h1>
-                <hr className='w-[80%] text-green-500' />
+                <hr className='w-full border-green-500' />
             </div>
 
             <input

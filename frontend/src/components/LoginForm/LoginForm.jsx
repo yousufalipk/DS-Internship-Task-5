@@ -40,7 +40,7 @@ const LoginForm = () => {
     })
 
     return (
-        <form onSubmit={handleSubmit} className='w-full h-full flex flex-col justify-center items-center gap-5'>
+        <form onSubmit={handleSubmit} className='w-full h-full flex flex-col justify-center items-center gap-5 px-4 md:px-10 lg:px-20'>
             <input
                 type="text"
                 id='email'

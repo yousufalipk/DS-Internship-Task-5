@@ -34,18 +34,17 @@ const Reviews = () => {
         }
     ];
 
-
     return (
-        <div id='reviews' className='w-full min-h-[70vh] flex flex-col justify-center items-center gap-2 px-20'>
-            <h1 className='w-full text-center font-semibold text-green-500 text-4xl py-2'>
+        <div id='reviews' className='w-full min-h-[70vh] flex flex-col justify-center items-center gap-2 px-6 sm:px-10 md:px-16 lg:px-20'>
+            <h1 className='w-full text-center font-semibold text-green-500 text-3xl sm:text-4xl py-2'>
                 What people say about us?
             </h1>
             <hr className='w-[80%] text-green-500' />
-            <div className='w-full h-[80%] grid grid-cols-2 grid-rows-2 place-items-center my-5'>
+            <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-5'>
                 {testimonials.map((t, i) => {
                     const stars = Array(t.rating).fill(null);
                     return (
-                        <div key={i} className='w-[90%] h-[90%] rounded-md bg-white shadow-md p-4 flex flex-col justify-start items-start text-gray-500 gap-2'>
+                        <div key={i} className='w-full rounded-md bg-white shadow-md p-4 flex flex-col justify-start items-start text-gray-500 gap-2'>
                             <h1 className='text-md font-bold'>{t.name}, <span className='text-sm font-semibold'>{t.location}</span></h1>
                             <div className='w-full flex justify-start items-center gap-1'>
                                 {stars.map((s, i) => {

@@ -24,15 +24,14 @@ const content = [
 ]
 
 const Carousel = () => {
-
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setIndex((prevIndex) => (prevIndex + 1) % content.length);
-        }, 5000)
-        return () => clearInterval(interval)
-    }, [])
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
 
     return (
         <div
@@ -41,27 +40,21 @@ const Carousel = () => {
             className='w-full min-h-[100vh] flex justify-start items-center bg-center bg-cover relative'
         >
             <div className='w-full h-full bg-black opacity-50 absolute z-10'></div>
-            <div className='w-[20%] h-[10%] absolute z-20 bottom-[3%] right-0 flex justify-center items-center gap-5'>
-                {content.map((img, i) => {
-                    return (
-                        <div key={i} className={`w-3 h-3 rounded-full border border-gray-200 ${i === index && 'bg-green-500'}`}></div>
-                    )
-                })}
+            <div className='absolute z-20 bottom-4 right-4 flex justify-center items-center gap-3'>
+                {content.map((img, i) => (
+                    <div key={i} className={`w-3 h-3 rounded-full border border-gray-200 ${i === index && 'bg-green-500'}`}></div>
+                ))}
             </div>
-            <div className='w-full h-full absolute z-20 text-white flex flex-col justify-center items-start px-20 gap-3'>
-                <h1
-                    className='text-5xl font-bold leading-15 w-[50%]'
-                >
+            <div className='w-full h-full absolute z-20 text-white flex flex-col justify-center px-6 sm:px-12 md:px-16 lg:px-20 gap-3'>
+                <h1 className='text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight max-w-[90%] md:max-w-[70%] lg:max-w-[50%]'>
                     {content[index].heading}
                 </h1>
-                <p
-                    className='text-lg font-semibold leading-8 w-[60%]'
-                >
+                <p className='text-sm sm:text-base md:text-lg font-medium leading-6 sm:leading-7 md:leading-8 max-w-[95%] md:max-w-[80%] lg:max-w-[60%]'>
                     {content[index].desc}
                 </p>
             </div>
-        </div >
-    )
-}
+        </div>
+    );
+};
 
 export default Carousel;

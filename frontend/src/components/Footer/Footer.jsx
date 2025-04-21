@@ -5,20 +5,22 @@ const Footer = () => {
     const navigate = useNavigate();
 
     return (
-        <div id='footer' className='w-full h-[10vh] flex flex-col justify-center items-center px-20 text-green-500 relative'>
-            <hr className='w-[80%] text-green-500' />
-            <div className='w-full h-full flex justify-between items-center'>
-                <p className='text-green-500'>Copyright © 2025. All Rights Are Reserved</p>
+        <div id='footer' className='w-full h-[15vh] flex flex-col justify-center items-center px-4 md:px-10 lg:px-20 text-green-500'>
+            <hr className='w-[90%] md:w-[80%] text-green-500' />
+            <div className='w-full flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0'>
+                <p className='text-green-500 text-center md:text-left'>
+                    Copyright © 2025. All Rights Are Reserved
+                </p>
                 <button
                     onClick={() => {
                         navigate('/dashboard')
                     }}
-                    className='w-20 hover:scale-105 text-green-500 hover:font-bold transition-all duration-300 hover:cursor-pointer hover:text-gray-500 font-semibold'
+                    className='w-20 text-green-500 hover:font-bold hover:scale-105 transition-all duration-300 font-semibold'
                 >
                     Dashboard
                 </button>
             </div>
-        </div >
+        </div>
     )
 }
 
